@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission</title>
+
+    <style>
+        body{
+            width: 100%;
+            height: auto;
+            margin: 0px;
+        }
+        .main{
+            width: 100%;
+            height: auto;
+            background-size: cover;
+          }  
+        .header{
+            background-color: black;
+            margin: 0px;
+            text-align: right;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .header a{
+            color: yellow;
+            padding: 10px;
+            text-decoration: none;
+            font-family: bold;
+        }
+        .header a:hover{
+            color: yellowgreen;
+            text-decoration:underline;
+            display:inline-blok;
+            transform:scale(1.2)
+        }
+        .box{
+            border-radius: 10px;
+            background-color:rgba(0, 255, 255, 0.463);
+            margin-top: 20px;
+            height: auto;
+            padding-bottom: 20px;
+            margin-left: 15px;
+            margin-right: 15px ;
+            margin-bottom: 20px;
+        }
+        .box h1{
+            margin-left: 30px;
+            margin-top: 40px;
+            padding: 20px;
+        }
+        .pg-details{
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        .pg-details input{
+            padding: 5px;
+            margin-bottom: 20px;
+            margin-top: 7px;
+            width: 300px;
+            height: 25px;
+            border: none;
+            border-bottom: 2px solid black;
+            border-radius: 5px;
+        }
+        .pg-details select{
+            padding: 3px;
+            margin-top: 5px;
+            margin-bottom: 7px;
+            width: 300px;
+            height: 25px;
+        }
+        .pg-details button{
+            height: 30px;
+            width: 300px;
+            background-color:black;
+            color: yellow;
+            border: 2px solid yellow;
+            border-bottom: 2px solid black;
+            border-radius: 5px;
+        }
+        .pg-details button:hover{
+            transform: scale(1);
+            background-color: black;
+            color: yellowgreen;
+            border: 2px solid yellowgreen;
+        }
+        .footer{
+            width: 100%;
+            height: 10vh;
+            padding-top: 5px;
+            background-color: black;
+            color: yellow;
+        }
+        .contact p{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main" style="background-image: url({% static 'images/order.jpg' %});">
+        <div class="header">
+            <a href="{% url 'homepage' %}">Home</a>
+            <a href="{% url 'aboutpage' %}">About</a>
+            {% if user.is_staff %}
+            <a href="">{{user.username}}</a>
+            <a href="{% url 'logoutpage' %}">Logout</a>
+            <a href="{% url 'orderpage' %}">ToCago</a>
+            <a href="">OrderProceed</a>
+            {% elif user.is_authenticated %}
+            <a href="">{{user.username}}</a>
+            <a href="{% url 'logoutpage' %}">Logout</a>
+            <a href="">ToCago</a>
+            {% else %}
+            <a href="{% url 'registerpage' %}">Register</a>
+            <a href="{% url 'logpage' %}">Login</a>
+            {% endif %}
+
+        </div>
+        <center>
+        <div class="box">
+            <h1>Cargo Order Details</h1>
+                <div class="pg-details">
+                    <form action="{% url 'orderpage' %}" method="post">
+                        {% csrf_token %}
+                        <font color="brown">{{msg}}</font>
+                        <table>
+                            <tr>
+                                <td><label> Client Name :</label></td>
+                                <td><input type="text" placeholder="Enter client name" name="clname" required></td>
+                            </tr>
+                            <tr>
+                                <td><label> Cargo Name :</label></td>
+                                <td><input type="text" placeholder="Enter cargo name" name="carname" required></td>
+                            </tr>
+                            <tr>
+                                <td><label> Weight(in kg) :</label></td>
+                                <td><input type="number" placeholder="Enter weight" name="weight" required></td>
+                            </tr>
+                            <tr>
+                                <td><label> Address :</label></td>
+                                <td><input type="text" placeholder="Enter address" name="place" required style="height: 75px;"></td>
+                            </tr>
+                            <tr>
+                                <td><label> District :</label></td>
+                                <td>
+                                    <select name="district" name="district" aria-placeholder="-----" required><br>
+                                        <option value="Trivandrum">Trivandrum</option>
+                                        <option value="Ernakulam">Ernakulam</option>
+                                        <option value="Alappuzha">Alappuzha</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label> Delivered within(in days) :</label></td>
+                                <td><input type="number" placeholder="Enter no: of day(s)" name="dday" required></td>
+                            </tr>
+                            <tr>
+                                <td><label>Contact No :</label></td>
+                                <td><input type="number" placeholder="Enter contact number" name="contact" required></td>
+                            </tr>
+                            <tr>
+                                <td><label>E-mail(optional) :</label></td>
+                                <td><input type="email" placeholder="Enter e-mail adress" name="email"></td>
+                            </tr>
+                        </table>
+                        <button type="submit">Submit</button>
+                    </form><br>
+                    <button>View</button>
+                </div>
+        </div>
+        </center>
+        <div class="footer">
+            <div class="contact">
+                <p>Contact : +0471 2336789;&nbsp;&nbsp; E-mail : tezztocargo123@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+body{
+    margin: 0px;
+}
+.main{
+    width: 100%;
+    height: auto;
+    background-color: blue;
+    margin: 0px;
+}
+
+.header{
+    background-color: black;
+    margin: 0px;
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.header a{
+    color: yellow;
+    padding: 10px;
+    text-decoration: none;
+    font-family: bold;
+}
+.header a:hover{
+    color: yellowgreen;
+    text-decoration:underline;
+    display:inline-blok;
+    transform:scale(1.2)
+}
+.top{
+    width: 100%;
+    height: 100vh;
+    background-color: aqua;
+    margin: 0px;
+}
+.top-body{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    margin: 0px;
+    background-color: white;
+}
+.top-mid{
+    padding-top:200px ;
+}
+.top-mid h1{
+    margin: 0px;
+    font-size: 60px;
+    text-shadow: 2px 2px 10px black;
+    color: yellow;
+    background-color: black;
+    border: 10px solid yellow;
+}
+.top-mid p{
+    width: 600px;
+    background-color: black;
+    color: yellow;
+    font-size: 20px;
+}
+.top-mid button{
+    width: 200px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 25px;
+    background-color:black;
+    color: yellow;
+    border: 2px solid yellow;
+}
+.top-mid button:hover{
+    transform: scale(1.1);
+    background-color: black;
+    color: yellowgreen;
+    border: 2px solid yellowgreen;
+}
+
+/* top display end  */
+/* mid display start  */
+
+.mid{
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    background-color: aqua;
+    padding-bottom: 20px;
+}
+.mid h1{
+    font-size: 50px;
+    padding-top: 20px;
+    color: yellow;
+    background-color: black;
+}
+.mid p{
+    font-size: 25px;
+    padding-left: 30px;
+}
+.inner-mid{
+    width: 90%;
+    display:contents; 
+    padding: 20px;
+}
+.pro-div{
+    display: flex;
+    text-align: center;
+    margin: 20px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    border: 5px solid black;
+}
+.pro-div img{
+    width: 500px;
+    height: 250px;
+    border-radius: 20px;
+    background-size: contain;
+    margin-left: 20px;
+}
+.pro-div p{
+    margin-top: 20px;
+}
+.mid h1{
+    font-size: 40px;
+}
+.mid p{
+    width: 60%;
+}
+.pro-div:hover{
+    
+}
+#more{
+    width: 100px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 15px;
+    background-color:black;
+    color: yellow;
+    border: 2px solid yellow;
+}
+#more:hover{
+    transform: scale(1.1);
+    background-color: black;
+    color: yellowgreen;
+    border: 2px solid yellowgreen;
+}
+
+/* mid display end  */
+/* footer display start  */
+
+.footer{
+    width: 100%;
+    height: 50vh;
+    background-color: black;
+    color: yellow;
+    padding-top: 50px;
+    display: flex;
+}
+.contact{
+    width: 40%;
+    padding-left: 30px;
+}
+.msg{
+    width: 60%;
+    padding-left: 150px;
+    margin-right: 20px;
+    text-align: center;
+}
+.msg img{
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    background-size: contain;
+    margin-left: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="top">
+            <div class="header">
+                <a href="{% url 'homepage' %}">Home</a>
+                <a href="{% url 'aboutpage' %}">About</a>
+                {% if user.is_staff %}
+                <a href="">{{user.username}}</a>
+                <a href="{% url 'logoutpage' %}">Logout</a>
+                <a href="{% url 'orderpage' %}">ToCago</a>
+                <a href="">OrderProceed</a>
+                {% elif user.is_authenticated %}
+                <a href="">{{user.username}}</a>
+                <a href="{% url 'logoutpage' %}">Logout</a>
+                <a href="">ToCago</a>
+                {% else %}
+                <a href="{% url 'registerpage' %}">Register</a>
+                <a href="{% url 'logpage' %}">Login</a>
+                {% endif %}
+            </div>
+            <div class="top-body" style="background-image: url({% static 'images/intro.jpg' %});">
+                <center>
+                    <div class="top-mid">
+                        <h1>Tezz Cargo Service</h1>
+                        <p>Design templates are pre-made designs and documents that can be customized. Templates are
+                        often designed to meet specific standards or specs so they're consistent between users and
+                        mediums. You can use pre-designed templates from template libraries and websites or create
+                        custom templates for future use.</p>
+                        <form action="{% url 'logpage' %}"><button> SIGN-IN</button></form>
+                    </div>
+                </center>
+            </div>
+        </div>
+        <div class="mid">
+            <center>
+                <h1>About</h1>
+                <p>Design templates are pre-made designs and documents that can be customized. Templates areoften designed to meet specific standards or specs so they're consistent between users and
+                mediums. You can use pre-designed templates from template libraries and websites or create
+                custom templates for future use.</p>
+            </center>
+            <div class="inner-mid">
+                <div class="pro-div">
+                    <img src="images/class.jpg" alt="">
+                    <center><p>Design templates are pre-made designs and documents that can be customized. Templates are
+                    often designed to meet specific standards or specs so they're consistent between users and
+                    mediums. You can use pre-designed templates from template libraries and websites or create
+                    custom templates for future use.</p></center><br>
+                </div>
+            </div>
+            <center>
+                <form action="{% url 'aboutpage' %}">
+                    <button id="more">More</button>
+                </form>
+            </center>
+        </div>
+        <div class="footer">
+            <div class="contact">
+                <h2>Contact : +0471 2336789</h2><br>
+                <h2>E-mail : tezztocargo123@gmail.com</h2><br><br>
+            </div>
+            <div class="msg">
+                <img src="{% static 'images/emblem.jpg' %}" alt="">
+                <center>
+                    <h2>Fast Delivery <br> Quality Packing</h2><br>
+                </center>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
